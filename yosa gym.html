@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOSA GYM</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+Ethiopic:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+/* Reset and Base Styles */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', 'Noto Sans Ethiopic', sans-serif;}
+body{background:#0b0b0b;color:white;overflow-x: hidden;}
+
+/* --- NEW ANIMATION KEYFRAMES --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Class to trigger the motion */
+.reveal {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* NAV */
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:15px 20px;
+  background:rgba(18,18,18,0.95);
+  z-index:1000;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,77,77,0.2);
+}
+
+.nav a{
+  color:#ddd;
+  margin:0 10px;
+  text-decoration:none;
+  transition: color 0.3s;
+}
+
+.nav a:hover{
+  color:#ff4d4d;
+}
+
+/* LANGUAGE TOGGLE */
+.lang-switch {
+  background: #222;
+  color: white;
+  border: 1px solid #ff4d4d;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.lang-switch:hover {
+  background: #ff4d4d;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:120px 20px 80px;
+  background:linear-gradient(135deg,rgba(255,77,77,0.8),rgba(255,77,77,0.3));
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+}
+
+/* BUTTON ATTRACTION */
+.btn{
+  padding:12px 24px;
+  margin:10px;
+  border:1px solid rgba(255,77,77,0.6);
+  background:rgba(255,77,77,0.1);
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-weight: 600;
+}
+
+.btn:hover{
+  background:white;
+  color:black;
+  transform: scale(1.1); /* Attraction Grow */
+  box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+}
+
+/* SECTIONS */
+section{padding:60px 20px;text-align:center;}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  margin-top:30px;
+}
+
+/* CARD ATTRACTION */
+.card{
+  background:#141414;
+  padding:30px;
+  border-radius:15px;
+  cursor:pointer;
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+}
+
+.card:hover{
+  background:rgba(255,77,77,0.15);
+  border-color: rgba(255,77,77,0.5);
+  transform: translateY(-10px); /* Attraction Lift */
+  box-shadow: 0 10px 20px rgba(255,77,77,0.2);
+}
+
+img{
+  width:100%;
+  max-width:600px;
+  margin:30px auto;
+  display:block;
+  border-radius:12px;
+  transition: 0.5s;
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+/* PAGES */
+.page{
+  display:none;
+  text-align:center;
+  padding-top:90px;
+}
+
+.active{display:block;}
+
+ul{
+  list-style-position:inside;
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+ul li{
+  margin:12px 0;
+  padding: 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 5px;
+}
+
+/* FORM */
+input,select{
+  padding:12px;
+  margin:10px;
+  border-radius:6px;
+  border:none;
+  background: #222;
+  color: white;
+  width: 250px;
+}
+
+/* TELEGRAM */
+.telegram{
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  background:#0088cc;
+  padding:15px;
+  border-radius:50px;
+  color:white;
+  text-decoration:none;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: 0.3s;
+  z-index: 2000;
+}
+
+.telegram:hover {
+    transform: rotate(-5deg) scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="nav">
+  <h2 onclick="showPage('home')" style="cursor:pointer; color: #ff4d4d;">YOSA GYM</h2>
+  <div>
+    <a href="#about" data-key="nav_about">About</a>
+    <a href="#services" data-key="nav_services">Services</a>
+    <a href="#plans" data-key="nav_plans">Plans</a>
+    <a href="#contact" data-key="nav_contact">Contact</a>
+    <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">አማርኛ</button>
+  </div>
+</div>
+
+<div id="home" class="page active">
+
+<div class="hero reveal">
+<h1>YOSA GYM</h1>
+<p data-key="hero_sub" style="font-size: 1.2rem; margin-bottom: 20px;">Build Strength. Transform Your Body.</p>
+
+<a href="https://t.me/Yosiiyosi" target="_blank">
+<button class="btn" data-key="join_btn">Join Now</button>
+</a>
+
+<button class="btn" onclick="showPage('booking')" data-key="book_btn">Book Visit</button>
+</div>
+
+<section id="about" class="reveal" style="animation-delay: 0.2s;">
+<h2 data-key="about_title" style="color:#ff4d4d; font-size: 2rem;">About</h2>
+<p data-key="about_text">Elite training environment focused on muscle growth and performance.</p>
+<img src="https://images.unsplash.com/photo-1558611848-73f7eb4001ab">
+</section>
+
+<section id="services" class="reveal" style="animation-delay: 0.3s;">
+<h2 data-key="services_title" style="color:#ff4d4d; font-size: 2rem;">Services</h2>
+<div class="grid">
+<div class="card" onclick="showPage('strength')" data-key="srv_strength">Strength Training</div>
+<div class="card" onclick="showPage('muscle')" data-key="srv_muscle">Muscle Building</div>
+<div class="card" onclick="showPage('weight')" data-key="srv_weight">Weight Loss</div>
+<div class="card" onclick="showPage('meal')" data-key="srv_meal">Meal Plan</div>
+</div>
+</section>
+
+<section id="plans" class="reveal" style="animation-delay: 0.4s;">
+  <h2 data-key="plans_title" style="color:#ff4d4d; font-size: 2rem;">Plans</h2>
+<div class="grid">
+<div class="card" onclick="showPage('plan_basic')" data-key="p_basic">Basic</div>
+<div class="card" onclick="showPage('plan_standard')" data-key="p_standard">Standard</div>
+<div class="card" onclick="showPage('plan_premium')" data-key="p_premium">Premium</div>
+</div>
+</section>
+
+<section id="contact" class="reveal">
+<h2 data-key="contact_title">Contact</h2>
+<p>📍 Addis Ababa</p>
+<p>📞 +251983007016</p>
+<p>Telegram: @Yosiiyosi</p>
+</section>
+
+</div>
+
+<div id="strength" class="page">
+<div class="reveal">
+<h1 data-key="srv_strength">Strength Training</h1>
+<img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438">
+<p data-key="strength_desc">Build strength using compound lifts.</p>
+<ul>
+<li data-key="li_bench">Bench Press</li>
+<li data-key="li_squats">Squats</li>
+<li data-key="li_deadlift">Deadlift</li>
+<li data-key="li_overhead">Overhead Press</li>
+</ul>
+<button class="btn" onclick="showPage('home')" data-key="back_btn">Back</button>
+</div>
+</div>
+
+<div id="muscle" class="page">
+<div class="reveal">
+<h1 data-key="srv_muscle">Muscle Building</h1>
+<img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c">
+<p data-key="muscle_desc">Grow muscle using hypertrophy training.</p>
+<ul>
+<li data-key="li_overload">Progressive Overload</li>
+<li data-key="li_isolation">Isolation Training</li>
+<li data-key="li_volume">High Volume</li>
+</ul>
+<button class="btn" onclick="showPage('home')" data-key="back_btn">Back</button>
+</div>
+</div>
+
+<div id="weight" class="page">
+<div class="reveal">
+<h1 data-key="srv_weight">Weight Loss</h1>
+<img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74">
+<p data-key="weight_desc">Burn fat with cardio and diet.</p>
+<ul>
+<li>HIIT</li>
+<li>Cardio</li>
+<li data-key="li_deficit">Calorie Deficit</li>
+</ul>
+<button class="btn" onclick="showPage('home')" data-key="back_btn">Back</button>
+</div>
+</div>
+
+<div id="meal" class="page">
+<div class="reveal">
+<h1 data-key="srv_meal">Meal Plan</h1>
+<img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352">
+<p data-key="meal_desc">Nutrition plans for best results.</p>
+<ul>
+<li data-key="li_protein">High Protein Diet</li>
+<li data-key="li_balanced">Balanced Nutrition</li>
+<li data-key="li_tracking">Calorie Tracking</li>
+</ul>
+<button class="btn" onclick="showPage('home')" data-key="back_btn">Back</button>
+</div>
+</div>
+
+<div id="plan_basic" class="page">
+<div class="reveal">
+<h1 data-key="p_basic">Basic Plan</h1>
+<img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba">
+<p data-key="basic_desc">Perfect for beginners.</p>
+<ul>
+<li data-key="li_gym_access">✔ Gym access</li>
+<li data-key="li_equip">✔ Equipment use</li>
+<li data-key="li_no_trainer">✖ No trainer</li>
+</ul>
+<button class="btn" onclick="showPage('home')" data-key="back_btn">Back</button>
+</div>
+</div>
+
+<div id="plan_standard" class="page">
+<div class="reveal">
+<h1 data-key="p_standard">Standard Plan</h1>
+<img src="https://images.unsplash.com/photo-1571019613914-85f342c1d4b6">
+<p data-key="standard_desc">Best for guided training.</p>
+<ul>
+<li data-key="li_gym_access">✔ Gym access</li>
+<li data-key="li_guidance">✔ Trainer guidance</li>
+<li data-key="li_workout">✔ Workout plan</li>
+</ul>
+<button class="btn" onclick="showPage('home')" data-key="back_btn">Back</button>
+</div>
+</div>
+
+<div id="plan_premium" class="page">
+<div class="reveal">
+<h1 data-key="p_premium">Premium Plan</h1>
+<img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61">
+<p data-key="premium_desc">Full transformation program.</p>
+<ul>
+<li data-key="li_personal">✔ Personal trainer</li>
+<li data-key="li_custom">✔ Custom workout</li>
+<li data-key="li_meal">✔ Meal plan</li>
+<li data-key="li_support">✔ Full support</li>
+</ul>
+<button class="btn" onclick="showPage('home')" data-key="back_btn">Back</button>
+</div>
+</div>
+
+<div id="booking" class="page">
+<div class="reveal">
+<h1 data-key="book_btn">Book Visit</h1>
+<select id="locationSelect">
+<option>Bole</option>
+<option>Piassa</option>
+<option>CMC</option>
+</select>
+<br>
+<input type="time">
+<br>
+<button class="btn" onclick="submitForm()" data-key="submit_btn">Submit</button>
+<button class="btn" onclick="showPage('home')" data-key="back_btn">Back</button>
+<p id="msg" style="margin-top: 20px; color: #ff4d4d;"></p>
+</div>
+</div>
+
+<a class="telegram" href="https://t.me/Yosiiyosi" target="_blank">
+Telegram
+</a>
+
+<script>
+let currentLang = 'en';
+
+const translations = {
+  en: {
+    nav_about: "About",
+    nav_services: "Services",
+    nav_plans: "Plans",
+    nav_contact: "Contact",
+    hero_sub: "Build Strength. Transform Your Body.",
+    join_btn: "Join Now",
+    book_btn: "Book Visit",
+    about_title: "About",
+    about_text: "Elite training environment focused on muscle growth and performance.",
+    services_title: "Services",
+    srv_strength: "Strength Training",
+    srv_muscle: "Muscle Building",
+    srv_weight: "Weight Loss",
+    srv_meal: "Meal Plan",
+    plans_title: "Plans",
+    p_basic: "Basic",
+    p_standard: "Standard",
+    p_premium: "Premium",
+    contact_title: "Contact",
+    back_btn: "Back",
+    submit_btn: "Submit",
+    strength_desc: "Build strength using compound lifts.",
+    li_bench: "Bench Press",
+    li_squats: "Squats",
+    li_deadlift: "Deadlift",
+    li_overhead: "Overhead Press",
+    muscle_desc: "Grow muscle using hypertrophy training.",
+    li_overload: "Progressive Overload",
+    li_isolation: "Isolation Training",
+    li_volume: "High Volume",
+    weight_desc: "Burn fat with cardio and diet.",
+    li_deficit: "Calorie Deficit",
+    meal_desc: "Nutrition plans for best results.",
+    li_protein: "High Protein Diet",
+    li_balanced: "Balanced Nutrition",
+    li_tracking: "Calorie Tracking",
+    basic_desc: "Perfect for beginners.",
+    li_gym_access: "✔ Gym access",
+    li_equip: "✔ Equipment use",
+    li_no_trainer: "✖ No trainer",
+    standard_desc: "Best for guided training.",
+    li_guidance: "✔ Trainer guidance",
+    li_workout: "✔ Workout plan",
+    premium_desc: "Full transformation program.",
+    li_personal: "✔ Personal trainer",
+    li_custom: "✔ Custom workout",
+    li_meal: "✔ Meal plan",
+    li_support: "✔ Full support",
+    msg_booked: "Booking submitted!"
+  },
+  am: {
+    nav_about: "ስለ እኛ",
+    nav_services: "አገልግሎቶች",
+    nav_plans: "ክፍያዎች",
+    nav_contact: "አድራሻ",
+    hero_sub: "ጥንካሬን ይገንቡ። ሰውነትዎን ይለውጡ።",
+    join_btn: "አሁኑኑ ይግቡ",
+    book_btn: "ቀጠሮ ይያዙ",
+    about_title: "ስለ እኛ",
+    about_text: "ለጡንቻ እድገት እና ውጤታማነት ተስማሚ የሆነ የስልጠና ቦታ።",
+    services_title: "አገልግሎቶች",
+    srv_strength: "የጥንካሬ ስልጠና",
+    srv_muscle: "ጡንቻ መገንባት",
+    srv_weight: "ክብደት መቀነስ",
+    srv_meal: "የምግብ ፕላን",
+    plans_title: "ክፍያዎች",
+    p_basic: "መሰረታዊ",
+    p_standard: "መካከለኛ",
+    p_premium: "ፕሪሚየም",
+    contact_title: "አድራሻ",
+    back_btn: "ተመለስ",
+    submit_btn: "ላክ",
+    strength_desc: "መሰረታዊ እንቅስቃሴዎችን በመጠቀም ጥንካሬን ይገንቡ።",
+    li_bench: "ቤንች ፕሬስ",
+    li_squats: "ስኳት",
+    li_deadlift: "ዴድሊፍት",
+    li_overhead: "ኦቨርሄድ ፕሬስ",
+    muscle_desc: "የጡንቻን መጠን ለመጨመር የሚረዱ ስልጠናዎች።",
+    li_overload: "ተከታታይነት ያለው ጫና",
+    li_isolation: "አንድን ጡንቻ የመለየት ስልጠና",
+    li_volume: "ከፍተኛ መጠን ያለው ስልጠና",
+    weight_desc: "በካርዲዮ እና በአመጋገብ ስብን ያቃጥሉ።",
+    li_deficit: "የካሎሪ ቅነሳ",
+    meal_desc: "ለተሻለ ውጤት የሚሆኑ የምግብ እቅዶች።",
+    li_protein: "ከፍተኛ ፕሮቲን ያለው ምግብ",
+    li_balanced: "የተመጣጠነ ምግብ",
+    li_tracking: "ካሎሪን መከታተል",
+    basic_desc: "ለጀማሪዎች ተስማሚ።",
+    li_gym_access: "✔ ጂም መጠቀም",
+    li_equip: "✔ መሳሪያዎችን መጠቀም",
+    li_no_trainer: "✖ አሰልጣኝ የለውም",
+    standard_desc: "በአሰልጣኝ ለሚሰለጥኑ ምርጥ ምርጫ።",
+    li_guidance: "✔ የአሰልጣኝ ድጋፍ",
+    li_workout: "✔ የስፖርት እቅድ",
+    premium_desc: "ሙሉ የሰውነት ለውጥ ፕሮግራም።",
+    li_personal: "✔ የግል አሰልጣኝ",
+    li_custom: "✔ ለርስዎ የተዘጋጀ እቅድ",
+    li_meal: "✔ የምግብ እቅድ",
+    li_support: "✔ ሙሉ ድጋፍ",
+    msg_booked: "ቀጠሮዎ ተይዟል!"
+  }
+};
+
+function toggleLanguage() {
+  currentLang = currentLang === 'en' ? 'am' : 'en';
+  const btn = document.getElementById('langBtn');
+  btn.innerText = currentLang === 'en' ? 'አማርኛ' : 'English';
+  
+  document.querySelectorAll('[data-key]').forEach(elem => {
+    const key = elem.getAttribute('data-key');
+    elem.innerText = translations[currentLang][key];
+  });
+}
+
+// Updated showPage to reset reveal animations
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const targetPage = document.getElementById(page);
+  targetPage.classList.add('active');
+  
+  // Re-trigger the animations for elements inside the page
+  const reveals = targetPage.querySelectorAll('.reveal');
+  reveals.forEach(r => {
+      r.style.animation = 'none';
+      r.offsetHeight; /* trigger reflow */
+      r.style.animation = null;
+  });
+
+  window.scrollTo(0,0);
+}
+
+function submitForm(){
+  const message = translations[currentLang].msg_booked;
+  document.getElementById("msg").innerText = message;
+}
+
+// Initial reveal for the home page
+window.addEventListener('load', () => {
+    document.querySelectorAll('#home .reveal').forEach(el => {
+        el.style.opacity = "1";
+    });
+});
+</script>
+
+</body>
+</html>
